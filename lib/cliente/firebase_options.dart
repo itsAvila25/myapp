@@ -7,13 +7,13 @@ import 'package:flutter/foundation.dart'
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
 /// Example:
-/// ```dart
+/// dart
 /// import 'firebase_options.dart';
 /// // ...
 /// await Firebase.initializeApp(
 ///   options: DefaultFirebaseOptions.currentPlatform,
 /// );
-/// ```
+/// 
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -84,5 +84,5 @@ class DefaultFirebaseOptions {
     authDomain: 'crud-api-79a1d.firebaseapp.com',
     storageBucket: 'crud-api-79a1d.appspot.com',
     measurementId: 'G-KYKKDCLY4E',
-  );
+);
 }

@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/fonde3.jpg"),
+                  image: AssetImage("assets/images/fondo3.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Card(
-                    color: Color.fromARGB(255, 255, 204, 153),
+                    color: Color.fromARGB(255, 255, 204, 153).withOpacity(0.8),
                     elevation: 4.0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -120,14 +120,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               : ElevatedButton(
                                   onPressed: _login,
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        Color.fromARGB(255, 255, 99, 71)
-                                            .withOpacity(0.8),
+                                    backgroundColor: Color.fromARGB(255, 255, 99, 71).withOpacity(0.8),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 15),
+                                    padding: const EdgeInsets.symmetric(vertical: 15),
                                   ),
                                   child: const Center(
                                     child: Text(

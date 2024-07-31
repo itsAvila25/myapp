@@ -93,7 +93,7 @@ class Layout extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NuevaPQRS()),
+                  MaterialPageRoute(builder: (context) => nuevaPQRS()),
                 );
               },
             ),
@@ -103,7 +103,7 @@ class Layout extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MisPQRS(title: 'Mis PQRS')),
+                  MaterialPageRoute(builder: (context) => MisPQRS(title: 'Mis Pqrs',)),
                 );
               },
             ),

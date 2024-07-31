@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class detalleHistorialPedido extends StatelessWidget {
@@ -52,7 +53,7 @@ class detalleHistorialPedido extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
+     ),
+);
+}
 }

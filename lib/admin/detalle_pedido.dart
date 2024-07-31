@@ -49,7 +49,7 @@ class DetallePedido extends StatelessWidget {
                 if (index == 0) {
                   imagePath = 'assets/images/arreglo_1.jpg';
                 } else if (index == 1) {
-                  imagePath = 'assets/images/arreglo_2.jpg';
+                  imagePath = 'assets/images/arreglo_2';
                 } else {
                   imagePath = 'assets/images/default.jpg'; // Imagen por defecto
                 }
