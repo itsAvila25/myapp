@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _fetchData() async {
     try {
-      final response = await http.get(Uri.parse('https://prueba-floristeria-production.up.railway.app/api/pedido'));
+      final response = await http.get(Uri.parse('http://localhost:8000/api/pedido'));
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);

@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     final response = await http.post(
-      Uri.parse('https://prueba-floristeria-production.up.railway.app/api/login'),
+      Uri.parse('http://localhost:8000/api/login'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'email': _emailController.text,
@@ -28,13 +28,19 @@ class _LoginScreenState extends State<LoginScreen> {
       }),
     );
 
+    print('Status Code: ${response.statusCode}');
+    print('Response Body: ${response.body}');
+
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
 
+      // Guardar el access_token y el rol en SharedPreferences
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('role', data['role']);
+      await prefs.setString('access_token', data['access_token']);
+      await prefs.setString('role', data['role']['nombre']); // Usa 'nombre'
 
-      if (data['role'] == 'admin') {
+      // Navegar según el rol
+      if (data['role']['nombre'] == 'Admin') {
         Navigator.pushReplacementNamed(context, '/adminDashboard');
       } else {
         Navigator.pushReplacementNamed(context, '/clientHome');
@@ -120,17 +126,21 @@ class _LoginScreenState extends State<LoginScreen> {
                               : ElevatedButton(
                                   onPressed: _login,
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: Color.fromARGB(255, 255, 99, 71).withOpacity(0.8),
+                                    backgroundColor:
+                                        Color.fromARGB(255, 255, 99, 71)
+                                            .withOpacity(0.8),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
-                                    padding: const EdgeInsets.symmetric(vertical: 15),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 15),
                                   ),
                                   child: const Center(
                                     child: Text(
                                       "Ingresar",
                                       style: TextStyle(
-                                        color: Color.fromARGB(255, 239, 239, 239),
+                                        color:
+                                            Color.fromARGB(255, 239, 239, 239),
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),

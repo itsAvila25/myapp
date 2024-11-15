@@ -9,7 +9,7 @@ class DetallePedido extends StatelessWidget {
 
   Future<Map<String, dynamic>> _fetchDetalle() async {
     try {
-      final response = await http.get(Uri.parse('https://prueba-floristeria-production.up.railway.app/api/pedido/detalle/$pedidoId'));
+      final response = await http.get(Uri.parse('ttp://localhost:8000/api/pedido/detalle/$pedidoId'));
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
       } else {
