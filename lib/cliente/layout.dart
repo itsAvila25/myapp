@@ -5,7 +5,7 @@ import '../login_screen.dart';
 import 'nuevaPQRS.dart';
 import 'misPQRS.dart';
 import 'pedidos.dart';
-import 'detalleHistorialPedido.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -104,16 +104,6 @@ class Layout extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MisPQRS(title: 'Mis Pqrs',)),
-                );
-              },
-            ),
-            _buildDrawerItem(
-              icon: Icons.history,
-              text: 'Historial de Pedidos',
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => detalleHistorialPedido()),
                 );
               },
             ),

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class DetallePedido extends StatelessWidget {
-  final int pedidoId;
+  final int id;
 
-  DetallePedido({required this.pedidoId});
+  DetallePedido({required this.id});
 
   Future<Map<String, dynamic>> _fetchDetalle() async {
     try {
-      final response = await http.get(Uri.parse('ttp://localhost:8000/api/pedido/detalle/$pedidoId'));
+      final response = await http.get(Uri.parse('http://localhost:8000/api/pedido/detalle/$id'));
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
       } else {

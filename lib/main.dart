@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => LoginScreen(),
         '/adminDashboard': (context) => AdminDashboardScreen(),
-        '/clientHome': (context) => FloristeriaTata(), // Utiliza FloristeriaTata aquí
+        '/clientHome': (context) => FloristeriaTata(), 
       },
     );
   }

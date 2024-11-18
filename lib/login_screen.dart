@@ -31,24 +31,28 @@ class _LoginScreenState extends State<LoginScreen> {
     print('Status Code: ${response.statusCode}');
     print('Response Body: ${response.body}');
 
-    if (response.statusCode == 200) {
+    try {
       final data = json.decode(response.body);
 
-      // Guardar el access_token y el rol en SharedPreferences
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('access_token', data['access_token']);
-      await prefs.setString('role', data['role']['nombre']); // Usa 'nombre'
+      await prefs.setString('role', data['role']['nombre']);
 
-      // Navegar según el rol
+      if (data['user_id'] != null) {
+        print('Usuario encontrado: ${data['user_id']}');
+        await prefs.setString('user_id', data['user_id'].toString());
+      } else {
+        print('No se recibió información del usuario en la respuesta.');
+      }
+
       if (data['role']['nombre'] == 'Admin') {
         Navigator.pushReplacementNamed(context, '/adminDashboard');
       } else {
         Navigator.pushReplacementNamed(context, '/clientHome');
       }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Credenciales incorrectas')),
-      );
+    } catch (e, stackTrace) {
+      print('Excepción capturada: $e');
+      print('Traza de la pila: $stackTrace');
     }
 
     setState(() {
