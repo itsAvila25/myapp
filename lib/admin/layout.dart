@@ -3,6 +3,8 @@ import 'detalle_venta.dart';
 import 'home.dart';
 import 'pedidos.dart';
 import '../login_screen.dart';
+import 'compra.dart';
+
 
 class CommonScaffold extends StatelessWidget {
   final Widget body;
@@ -61,35 +63,47 @@ class CommonScaffold extends StatelessWidget {
                     );
                   },
                 ),
-                
                 ListTile(
-                  leading: Icon(Icons.local_shipping, color: Colors.black),
+                  leading: Icon(Icons.home, color: Colors.black),
                   title: Text(
-                    'Pedidos',
+                    'Compras',
                     style: TextStyle(color: Colors.black),
                   ),
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              MyHomePage(title: 'Lista de Pedidos')),
+                      MaterialPageRoute(builder: (context) => Compra(title: 'Compras',)),
                     );
                   },
                 ),
-                ListTile(
-                  leading: Icon(Icons.shopping_bag, color: Colors.black),
-                  title: Text(
-                    'Detalle de Ventas',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => DetalleVenta()),
-                    );
-                  },
-                ),
+                // ListTile(
+                //   leading: Icon(Icons.local_shipping, color: Colors.black),
+                //   title: Text(
+                //     'Pedidos',
+                //     style: TextStyle(color: Colors.black),
+                //   ),
+                //   onTap: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) =>
+                //               MyHomePage(title: 'Lista de Pedidos')),
+                //     );
+                //   },
+                // ),
+                // ListTile(
+                //   leading: Icon(Icons.shopping_bag, color: Colors.black),
+                //   title: Text(
+                //     'Detalle de Ventas',
+                //     style: TextStyle(color: Colors.black),
+                //   ),
+                //   onTap: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (context) => DetalleVenta()),
+                //     );
+                //   },
+                // ),
                 ListTile(
                   leading: Icon(Icons.exit_to_app, color: Colors.black),
                   title: Text(
