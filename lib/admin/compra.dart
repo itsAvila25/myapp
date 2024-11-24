@@ -39,7 +39,7 @@ class _MyHomePageState extends State<Compra> {
   Future<void> _fetchData() async {
     try {
       final response =
-          await http.get(Uri.parse('http://localhost:8000/api/compra'));
+          await http.get(Uri.parse('http://10.0.2.2:8000/api/compra'));
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
@@ -56,7 +56,7 @@ class _MyHomePageState extends State<Compra> {
 
   Future<void> _anularCompra(int id) async {
     final response = await http.delete(
-      Uri.parse('http://localhost:8000/api/compra/anular/$id'),
+      Uri.parse('http://10.0.2.2:8000/api/compra/anular/$id'),
       headers: {'Content-Type': 'application/json'},
     );
 
