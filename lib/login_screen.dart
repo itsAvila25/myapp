@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:8000/api/login'),
+      Uri.parse('http://localhost:8000/api/login'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'email': _emailController.text,
@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 60),
+                          const SizedBox(height: 30),
                           _isLoading
                               ? CircularProgressIndicator()
                               : ElevatedButton(

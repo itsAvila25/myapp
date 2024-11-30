@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'cliente/firebase_options.dart';
 
 void main() async {
+  
   WidgetsFlutterBinding.ensureInitialized();
   try {
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Login Demo',
+      title: 'Floristeria La Tata',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

@@ -5,7 +5,6 @@ import 'pedidos.dart';
 import '../login_screen.dart';
 import 'compra.dart';
 
-
 class CommonScaffold extends StatelessWidget {
   final Widget body;
   final String title;
@@ -14,109 +13,104 @@ class CommonScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double drawerWidth = MediaQuery.of(context).size.width * 0.5;
+    double drawerWidth = MediaQuery.of(context).size.width * 0.6;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sesión Administrador'),
-        backgroundColor: Color.fromARGB(255, 255, 153, 189),
+        title: Text(
+          'Sesión Administrador',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+        backgroundColor: Color(0xFFB3C7D6), // Color pastel neutro
+        elevation: 0,
       ),
       drawer: SizedBox(
-        width: drawerWidth, // Ajustar el ancho del drawer
+        width: drawerWidth,
         child: Drawer(
           child: Container(
-            color: Color.fromARGB(255, 255, 153, 189),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFFF6F2F1), // Suave blanco arena
+                  Color(0xFFD9E4EC), // Azul pastel neutro
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
             child: ListView(
               padding: EdgeInsets.zero,
               children: <Widget>[
                 DrawerHeader(
                   decoration: BoxDecoration(
-                    color: Colors.pink[100],
+                    color: Colors.transparent,
                   ),
                   child: Row(
                     children: [
                       CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Text('T', style: TextStyle(color: Colors.black)),
+                        radius: 30,
+                        backgroundColor: Color(0xFFB3C7D6), // Fondo pastel
+                        child: Text(
+                          'T',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                       SizedBox(width: 10),
                       Text(
                         'La Tata',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Color(0xFF4A5568), // Gris neutro oscuro
                           fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
                         ),
                       ),
                     ],
                   ),
                 ),
-                ListTile(
-                  leading: Icon(Icons.home, color: Colors.black),
-                  title: Text(
-                    'Home',
-                    style: TextStyle(color: Colors.black),
-                  ),
+                _drawerItem(
+                  context,
+                  icon: Icons.home,
+                  text: 'Inicio',
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AdminDashboardScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => AdminDashboardScreen()),
                     );
                   },
                 ),
-                ListTile(
-                  leading: Icon(Icons.home, color: Colors.black),
-                  title: Text(
-                    'Compras',
-                    style: TextStyle(color: Colors.black),
-                  ),
+                _drawerItem(
+                  context,
+                  icon: Icons.shopping_bag,
+                  text: 'Compras',
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Compra(title: 'Compras',)),
+                      MaterialPageRoute(
+                          builder: (context) => Compra(title: 'Compras')),
                     );
                   },
                 ),
-                // ListTile(
-                //   leading: Icon(Icons.local_shipping, color: Colors.black),
-                //   title: Text(
-                //     'Pedidos',
-                //     style: TextStyle(color: Colors.black),
-                //   ),
-                //   onTap: () {
-                //     Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //           builder: (context) =>
-                //               MyHomePage(title: 'Lista de Pedidos')),
-                //     );
-                //   },
-                // ),
-                // ListTile(
-                //   leading: Icon(Icons.shopping_bag, color: Colors.black),
-                //   title: Text(
-                //     'Detalle de Ventas',
-                //     style: TextStyle(color: Colors.black),
-                //   ),
-                //   onTap: () {
-                //     Navigator.push(
-                //       context,
-                //       MaterialPageRoute(builder: (context) => DetalleVenta()),
-                //     );
-                //   },
-                // ),
-                ListTile(
-                  leading: Icon(Icons.exit_to_app, color: Colors.black),
-                  title: Text(
-                    'Cerrar sesión',
-                    style: TextStyle(color: Colors.black),
-                  ),
+                _drawerItem(
+                  context,
+                  icon: Icons.exit_to_app,
+                  text: 'Cerrar sesión',
                   onTap: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => LoginScreen()), 
-                (Route<dynamic> route) => false,
-              );
-            },
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LoginScreen()),
+                      (Route<dynamic> route) => false,
+                    );
+                  },
                 ),
               ],
             ),
@@ -124,6 +118,28 @@ class CommonScaffold extends StatelessWidget {
         ),
       ),
       body: body,
+    );
+  }
+
+  Widget _drawerItem(BuildContext context,
+      {required IconData icon, required String text, required VoidCallback onTap}) {
+    return ListTile(
+      leading: Icon(
+        icon,
+        color: Color(0xFF4A5568), // Gris neutro oscuro
+        size: 28,
+      ),
+      title: Text(
+        text,
+        style: TextStyle(
+          color: Color(0xFF4A5568), // Gris neutro oscuro
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      onTap: onTap,
+      contentPadding: EdgeInsets.symmetric(horizontal: 20),
+      hoverColor: Color(0xFFE5ECF2), // Azul muy claro al interactuar
     );
   }
 }
