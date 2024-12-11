@@ -29,7 +29,7 @@ class _CompraScreenState extends State<CompraScreen> {
   }
 
   Future<void> _obtenerProveedores() async {
-    final response = await http.get(Uri.parse('http://localhost:8000/api/proveedor'));
+    final response = await http.get(Uri.parse('http://10.0.2.2:8000/api/proveedor'));
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
       setState(() {
@@ -41,7 +41,7 @@ class _CompraScreenState extends State<CompraScreen> {
   }
 
   Future<void> _obtenerCategorias() async {
-    final response = await http.get(Uri.parse('http://localhost:8000/api/categoria'));
+    final response = await http.get(Uri.parse('http://10.0.2.2:8000/api/categoria'));
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
       setState(() {
@@ -53,7 +53,7 @@ class _CompraScreenState extends State<CompraScreen> {
   }
 
   Future<void> _obtenerInsumos(String categoriaId) async {
-    final response = await http.get(Uri.parse('http://localhost:8000/api/insumo/$categoriaId'));
+    final response = await http.get(Uri.parse('http://10.0.2.2:8000/api/insumo/$categoriaId'));
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
       setState(() {
@@ -130,7 +130,7 @@ class _CompraScreenState extends State<CompraScreen> {
   print(compraData);  // Verificar los datos enviados
 
   final response = await http.post(
-  Uri.parse('http://localhost:8000/api/compras'),
+  Uri.parse('http://10.0.2.2:8000/api/compras'),
   headers: {'Content-Type': 'application/json'},
   body: json.encode(compraData),
 );
