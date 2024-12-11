@@ -9,7 +9,7 @@ class DetalleCompra extends StatelessWidget {
 
   Future<Map<String, dynamic>> _fetchDetalle() async {
     try {
-      final response = await http.get(Uri.parse('http://localhost:8000/api/compra/detalle/$id'));
+      final response = await http.get(Uri.parse('http://10.0.2.2:8000/api/compra/detalle/$id'));
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
       } else {

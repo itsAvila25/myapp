@@ -128,7 +128,7 @@ class AdminDashboardScreen extends StatelessWidget {
               _buildDecorativeCard(
                 icon: Icons.speed, // Ícono de efectividad
                 label: 'Efectividad',
-                color: Color(0xFFF7C5A8), // Rosa pastel
+                color: Color(0xFFD9E4EC), // Rosa pastel
               ),
             ],
           ),

@@ -44,7 +44,7 @@ class _CompraState extends State<Compra> {
   Future<void> _fetchData() async {
     try {
       final response =
-          await http.get(Uri.parse('http://localhost:8000/api/compra'));
+          await http.get(Uri.parse('http://10.0.2.2:8000/api/compra'));
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
@@ -61,7 +61,7 @@ class _CompraState extends State<Compra> {
 
   Future<void> _anularCompra(int id) async {
     final response = await http.delete(
-      Uri.parse('http://localhost:8000/api/compra/anular/$id'),
+      Uri.parse('http://10.0.2.2:8000/api/compra/anular/$id'),
       headers: {'Content-Type': 'application/json'},
     );
 
@@ -131,113 +131,114 @@ class _CompraState extends State<Compra> {
             ),
           ),
           const SizedBox(height: 16),
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // Número de columnas
-                crossAxisSpacing: 16.0, // Espacio entre las columnas
-                mainAxisSpacing: 16.0, // Espacio entre las filas
-                childAspectRatio: 1.2, // Ajusta el aspecto de las tarjetas
-              ),
-              itemCount: _data.length,
-              itemBuilder: (BuildContext context, int index) {
-                final data = _data[index];
-                DateTime fechaCompra = DateTime.parse(data['created_at']);
-                String formattedDate =
-                    DateFormat('dd/MM/yy').format(fechaCompra);
+         Expanded(
+  child: GridView.builder(
+    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 1, // Solo una tarjeta por fila
+      crossAxisSpacing: 16.0, // Espacio entre las columnas
+      mainAxisSpacing: 16.0, // Espacio entre las filas
+      childAspectRatio: 2.0, // Tarjetas alargadas (ajusta según sea necesario)
+    ),
+    itemCount: _data.length,
+    itemBuilder: (BuildContext context, int index) {
+      final data = _data[index];
+      DateTime fechaCompra = DateTime.parse(data['created_at']);
+      String formattedDate =
+          DateFormat('dd/MM/yy').format(fechaCompra);
 
-                return Card(
-                  color: Color(0xFFF7C5A8), // Color de las tarjetas ajustado
-                  elevation: 3,
-                  child: Padding(
-                    padding: EdgeInsets.all(12),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center, // Centra los textos
-                      crossAxisAlignment: CrossAxisAlignment.center, // Alineación central
-                      children: [
-                        Text(
-                          'Compra #${data['id']}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: Color.fromARGB(255, 0, 0, 0),
-                          ),
-                          textAlign: TextAlign.center, // Centra el texto
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Fecha: $formattedDate',
-                          style: TextStyle(fontSize: 14),
-                          textAlign: TextAlign.center, // Centra el texto
-                        ),
-                        Text(
-                          'Proveedor: ${data['proveedor_nombre']}',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: const Color.fromARGB(255, 0, 0, 0),
-                          ),
-                          textAlign: TextAlign.center, // Centra el texto
-                        ),
-                        Text(
-                          'Total: \$${data['costo_total']}',
-                          style: TextStyle(fontSize: 14),
-                          textAlign: TextAlign.center, // Centra el texto
-                        ),
-                        Text(
-                          'Estado: ${data['estado']}',
-                          style: TextStyle(fontSize: 14),
-                          textAlign: TextAlign.center, // Centra el texto
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center, // Centra los botones
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.blue[50],
-                                borderRadius: BorderRadius.circular(22),
-                                border: Border.all(
-                                  color: Colors.blue, // Borde azul
-                                  width: 1,
-                                ),
-                              ),
-                              child: IconButton(
-                                onPressed: () => _verDetalle(data['id']),
-                                icon: Icon(
-                                  Icons.remove_red_eye,
-                                  color: Color.fromARGB(255, 76, 169, 255),
-                                  size: 30,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.red[50],
-                                borderRadius: BorderRadius.circular(22),
-                                border: Border.all(
-                                  color: Colors.red, // Borde rojo
-                                  width: 1,
-                                ),
-                              ),
-                              child: IconButton(
-                                onPressed: () => _anularCompra(data['id']),
-                                icon: Icon(
-                                  Icons.cancel,
-                                  color: const Color.fromARGB(255, 253, 76, 73),
-                                  size: 30,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+      return Card(
+        color: Color(0xFFF7C5A8), // Color de las tarjetas ajustado
+        elevation: 3,
+        child: Padding(
+          padding: EdgeInsets.all(12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center, // Centra los textos
+            crossAxisAlignment: CrossAxisAlignment.center, // Alineación central
+            children: [
+              Text(
+                'Compra #${data['id']}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
+                textAlign: TextAlign.center, // Centra el texto
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Fecha: $formattedDate',
+                style: TextStyle(fontSize: 14),
+                textAlign: TextAlign.center, // Centra el texto
+              ),
+              Text(
+                'Proveedor: ${data['proveedor_nombre']}',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: const Color.fromARGB(255, 0, 0, 0),
+                ),
+                textAlign: TextAlign.center, // Centra el texto
+              ),
+              Text(
+                'Total: \$${data['costo_total']}',
+                style: TextStyle(fontSize: 14),
+                textAlign: TextAlign.center, // Centra el texto
+              ),
+              Text(
+                'Estado: ${data['estado']}',
+                style: TextStyle(fontSize: 14),
+                textAlign: TextAlign.center, // Centra el texto
+              ),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center, // Centra los botones
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue[50],
+                      borderRadius: BorderRadius.circular(22),
+                      border: Border.all(
+                        color: Colors.blue, // Borde azul
+                        width: 1,
+                      ),
+                    ),
+                    child: IconButton(
+                      onPressed: () => _verDetalle(data['id']),
+                      icon: Icon(
+                        Icons.remove_red_eye,
+                        color: Color.fromARGB(255, 76, 169, 255),
+                        size: 30,
+                      ),
                     ),
                   ),
-                );
-              },
-            ),
+                  const SizedBox(width: 16),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.red[50],
+                      borderRadius: BorderRadius.circular(22),
+                      border: Border.all(
+                        color: Colors.red, // Borde rojo
+                        width: 1,
+                      ),
+                    ),
+                    child: IconButton(
+                      onPressed: () => _anularCompra(data['id']),
+                      icon: Icon(
+                        Icons.cancel,
+                        color: const Color.fromARGB(255, 253, 76, 73),
+                        size: 30,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
+        ),
+      );
+    },
+  ),
+)
+
         ],
       ),
     );
